@@ -1,3 +1,2 @@
-<ul>
-    <li *ngFor="let post of posts">{{post.title}} <br/>{{post.body}}</li>
-</ul>
+<h1>Ta strona jest od postów</h1>
+<app-post-list [posts]="posts$ | async"></app-post-list>
