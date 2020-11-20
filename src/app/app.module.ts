@@ -7,8 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Error404Component } from './error404/error404.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { TodosModule } from './todos/todos.module';
-import { PostsModule } from './posts/posts.module';
+// import { TodosModule } from './todos/todos.module';
+// import { PostsModule } from './posts/posts.module';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,8 @@ import { PostsModule } from './posts/posts.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TodosModule,
-    PostsModule
+    // TodosModule,
+    // PostsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

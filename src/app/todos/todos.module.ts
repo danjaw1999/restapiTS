@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { TodosComponent } from './todos.component';
 import { TodoListComponent } from "./todo-list/todo-list.component";
 import { TodoItemComponent } from "./todo-item/todo-item.component";
+import { TodosRoutingModule } from "./todos-routing.module";
 
 @NgModule({
     imports: [
-        CommonModule        
+        CommonModule,
+        TodosRoutingModule   
     ],
     declarations: [
         TodosComponent,
