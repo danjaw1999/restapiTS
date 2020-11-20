@@ -1,26 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators'
 
-import { MainService } from '../main.service';
-import { Todo } from '../models/todo.model';
+import { Todo } from './shared/todo.model';
 
 @Component({
   selector: 'app-section',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss']
 })
-export class TodosComponent implements OnInit {
+export class TodosComponent {
   ids: number[];
   todos$: Observable<Todo[]>;
   
-  constructor(private mainService: MainService) { }
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.todos$ = this.activatedRoute.data.pipe(
+      map((data: { todos: Todo[] }) => data.todos)
+    )
+   }
   
-  ngOnInit() {
-    this.todos$ = this.mainService.fetchTodos().pipe(
-      tap(todos => {
-        this.ids = todos.map(item => item.id);
-      })
-    );
-  }
+  // ngOnInit() {
+  //   this.todos$ = this.mainService.fetchTodos().pipe(
+  //     tap(todos => {
+  //       this.ids = todos.map(item => item.id);
+  //     })
+  //   );
+  // }
 }

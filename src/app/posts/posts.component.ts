@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { MainService } from '../main.service';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Post } from '../models/post.model';
+import { map } from 'rxjs/operators'
+import { Post } from './shared/post.model';
 
 @Component({
   selector: 'app-header',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss']
 })
-export class PostsComponent implements OnInit {  
+export class PostsComponent  {  
   posts$: Observable<Post[]>;
 
-  constructor(private mainService: MainService) {}
-  
-  ngOnInit() {
-      this.posts$ = this.mainService.fetchPosts();
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.posts$ = this.activatedRoute.data.pipe(
+      map((data: { posts: Post[]}) => data.posts)
+    );
   }
+
 }

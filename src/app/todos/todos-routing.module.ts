@@ -1,13 +1,14 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { TodosComponent } from './todos.component';
+import { TodosResolverService } from './shared/todos.resolver';
 
 
 
 const routes: Routes = [
   {
     path: '',
-    component: TodosComponent
+    component: TodosComponent, resolve: {todos: TodosResolverService}
   }
 ];
 

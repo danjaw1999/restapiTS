@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Post } from 'src/app/models/post.model';
+import { Post } from 'src/app/posts/shared/post.model';
 
 @Component({
   selector: 'app-post-list',
