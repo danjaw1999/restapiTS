@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Post } from '../posts/shared/post.model';
+import { Post } from './post.model';
 
 
 

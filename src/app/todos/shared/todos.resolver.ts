@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { TodosService } from 'src/app/services/todos.service';
+import { TodosService } from 'src/app/todos/shared/todos.service';
 import { Todo } from './todo.model';
 
 @Injectable({

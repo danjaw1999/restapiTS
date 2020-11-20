@@ -8,7 +8,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 const routes: Routes = [
   {path: '', component: MainPageComponent},  
   {path: 'todos', loadChildren: () => import('./todos/todos.module').then(m => m.TodosModule)},
-  {path: 'posts', loadChildren: () => import('./posts/posts.module').then(m => m.PostsModule)}
+  {path: 'posts', loadChildren: () => import('./posts/posts.module').then(m => m.PostsModule)},
+  {path: 'comments', loadChildren: () => import('./comments/comments.module').then(m => m.CommentsModule)}
   // {path: 'todos', component: TodosComponent},
   // {path: 'posts', component: PostsComponent},
 ];

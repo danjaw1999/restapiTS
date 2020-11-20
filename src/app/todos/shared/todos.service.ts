@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Todo } from '../todos/shared/todo.model';
+import { Todo } from './todo.model';
 
 
 @Injectable({
