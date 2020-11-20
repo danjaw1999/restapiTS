@@ -5,7 +5,7 @@ import { CommentsComponent } from "./comments.component";
 import { CommentsRoutingModule } from "./comments-routing.module";
 import { CommentListComponent } from "./comment-list/comment-list.component";
 import { CommentItemComponent } from "./comment-item/comment-item.component";
-// import { CommentItemInfoComponent } from './comment-item-info/comment-item-info.component';
+import { CommentItemInfoComponent } from './comment-item-info/comment-item-info.component';
 
 @NgModule({
     imports: [
@@ -16,7 +16,7 @@ import { CommentItemComponent } from "./comment-item/comment-item.component";
         CommentsComponent,
         CommentListComponent,
         CommentItemComponent,
-        // CommentItemInfoComponent
+        CommentItemInfoComponent
     ]
 })
 export class CommentsModule {};

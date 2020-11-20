@@ -1,3 +1,5 @@
 <div>
-    {{comment.name}}
+    <a [routerLink]="['/comments', comment.id]">
+        {{comment.name}}
+    </a>
 </div>

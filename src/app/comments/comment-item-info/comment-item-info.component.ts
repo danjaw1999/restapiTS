@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
-
-import { Comment } from './../shared/comment.model';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-comment-item-info',
@@ -8,5 +9,12 @@ import { Comment } from './../shared/comment.model';
   styleUrls: ['./comment-item-info.component.scss']
 })
 export class CommentItemInfoComponent{
-  @Input() comment: Comment;
+    comment$: Observable<Comment>;
+
+    constructor(private activatedRoute: ActivatedRoute) {
+      this.comment$ = this.activatedRoute.data.pipe(
+        tap(console.log),
+        map((data: {comment: Comment}) => data.comment)
+      )
+    }
 }

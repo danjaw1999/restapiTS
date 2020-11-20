@@ -1,5 +1,5 @@
-<div>
-    <p>
-
-    </p>
+<div *ngIf="comment$ | async as comment">
+    <h2>{{comment.id}}</h2>
+    <h2>{{comment.email}}</h2>
+    <h2>{{comment.name}}</h2>
 </div>
