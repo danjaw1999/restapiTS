@@ -1,0 +1,6 @@
+<div *ngIf="todo$ | async as todo">
+  <h2>{{ todo.id }}</h2>
+  <h2>{{ todo.title }}</h2>
+  <h2>{{ todo.completed }}</h2>
+  <h2>{{ todo.userId }}</h2>
+</div>

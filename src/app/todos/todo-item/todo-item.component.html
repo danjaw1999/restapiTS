@@ -1,3 +1,5 @@
 <div>
-    {{todo.title}} {{todo.completed}}
+  <a [routerLink]="['/todos', todo.id]">
+    {{ todo.title }}
+  </a>
 </div>

@@ -5,6 +5,7 @@ import { TodosComponent } from './todos.component';
 import { TodoListComponent } from "./todo-list/todo-list.component";
 import { TodoItemComponent } from "./todo-item/todo-item.component";
 import { TodosRoutingModule } from "./todos-routing.module";
+import { TodoItemInfoComponent } from './todo-item-info/todo-item-info.component';
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { TodosRoutingModule } from "./todos-routing.module";
     declarations: [
         TodosComponent,
         TodoListComponent,
-        TodoItemComponent
+        TodoItemComponent,
+        TodoItemInfoComponent
     ]
 })
 export class TodosModule {};
