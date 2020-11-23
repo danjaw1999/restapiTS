@@ -1,4 +1,4 @@
-export interface ComOfPost{
+export interface CommentsOfPost{
     postId: number;
     id: number;
     name: string;

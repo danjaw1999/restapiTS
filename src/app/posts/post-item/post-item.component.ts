@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Post } from 'src/app/posts/shared/post.model';
-import { ComOfPost } from '../shared/comments-of-post.model';
 
 @Component({
   selector: 'app-post-item',

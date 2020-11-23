@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { Post } from '../shared/post.model';
 
 @Component({
   selector: 'app-post-item-info',
@@ -10,7 +12,6 @@ import { map } from 'rxjs/operators';
 })
 export class PostItemInfoComponent {
   post$: Observable<Post>;
-
   constructor(private activatedRoute: ActivatedRoute) { 
     this.post$ = this.activatedRoute.data.pipe(
       map((data: {post: Post}) => data.post)

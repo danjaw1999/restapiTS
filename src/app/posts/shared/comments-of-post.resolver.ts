@@ -3,14 +3,14 @@ import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } 
 import { Observable } from 'rxjs';
 
 import { PostService } from 'src/app/posts/shared/posts.service';
-import { ComOfPost } from './comments-of-post.model';
+import { CommentsOfPost } from './comments-of-post.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class CommentsOfPostResolverService implements Resolve<ComOfPost>{
+export class CommentsOfPostResolverService implements Resolve<CommentsOfPost[]>{
     constructor(private postService: PostService){}
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): ComOfPost | Observable<ComOfPost> | Promise<ComOfPost> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): CommentsOfPost[] | Observable<CommentsOfPost[]> | Promise<CommentsOfPost[]> {
         const {id} = route.params;
         return this.postService.fetchPostCom(id);
     }

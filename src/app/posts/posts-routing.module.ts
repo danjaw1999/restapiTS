@@ -13,7 +13,7 @@ const routes: Routes = [
     path: '',
     component: PostsComponent, resolve: {posts: PostsResolverService}
   },
-  {path: ':id', component: PostItemInfoComponent, resolve: {post: PostResolverService, com: CommentsOfPostResolverService}},
+  {path: ':id', component: PostItemInfoComponent, resolve: {post: PostResolverService, comments: CommentsOfPostResolverService}},
   {path: '**', component: Error404Component}
 ];
 
