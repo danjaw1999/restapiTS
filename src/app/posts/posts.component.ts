@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
+
 import { Post } from './shared/post.model';
 
 @Component({
@@ -17,5 +18,4 @@ export class PostsComponent  {
       map((data: { posts: Post[]}) => data.posts)
     );
   }
-
 }

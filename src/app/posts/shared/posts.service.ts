@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Post } from './post.model';
+import { ComOfPost } from './comments-of-post.model';
 
 
 
@@ -16,6 +17,14 @@ export class PostService {
   fetchPosts() {
     const posts = 'https://jsonplaceholder.typicode.com/posts/';
     return this.http.get<Post[]>(posts);
+  }
+  fetchPost(id: number){
+    const action = `https://jsonplaceholder.typicode.com/posts/${id}`;
+    return this.http.get<Post>(action);
+  }
+  fetchPostCom(id: number){
+    const action = `https://jsonplaceholder.typicode.com/comments?postId=${id}`;
+    return this.http.get<ComOfPost>(action);
   }
 }
 
