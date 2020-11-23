@@ -1,2 +1,9 @@
 <h1>Ta strona jest od postów</h1>
+<button (click)="increment()">Increment</button>
+
+<div>Current Count: {{ count$ | async }}</div>
+
+<button (click)="decrement()">Decrement</button>
+
+<button (click)="reset()">Reset Counter</button>
 <app-post-list [posts]="posts$ | async"></app-post-list>
