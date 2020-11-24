@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { increment, decrement, reset } from './store/post.actions';
-import { map } from 'rxjs/operators'
 
 import { Post } from './shared/post.model';
+import { PostsFacade } from './store/posts.facade';
 
 @Component({
   selector: 'app-header',
@@ -13,24 +10,9 @@ import { Post } from './shared/post.model';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent  {  
-  posts$: Observable<Post[]>;
-  count$: Observable<number>
+  posts$: Observable<Post[]> = this.postsFacade.posts$;
 
-  constructor(private activatedRoute: ActivatedRoute, private store: Store<{count: number}>) {
-    this.count$ = store.select('count');
-    this.posts$ = this.activatedRoute.data.pipe(
-      map((data: { posts: Post[]}) => data.posts)
-    );
-  }
-  increment() {
-    this.store.dispatch(increment());
-  }
- 
-  decrement() {
-    this.store.dispatch(decrement());
-  }
- 
-  reset() {
-    this.store.dispatch(reset());
+  constructor(private postsFacade: PostsFacade) {
+    this.postsFacade.getPosts();
   }
 }

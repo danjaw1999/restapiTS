@@ -11,7 +11,7 @@ import { CommentsOfPostResolverService } from './shared/comments-of-post.resolve
 const routes: Routes = [
   {
     path: '',
-    component: PostsComponent, resolve: {posts: PostsResolverService}
+    component: PostsComponent
   },
   {path: ':id', component: PostItemInfoComponent, resolve: {post: PostResolverService, comments: CommentsOfPostResolverService}},
   {path: '**', component: Error404Component}
