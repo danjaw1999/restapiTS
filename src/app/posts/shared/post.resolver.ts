@@ -11,7 +11,7 @@ import { Post } from './post.model';
 export class PostResolverService implements Resolve<Post>{
     constructor(private postService: PostService){}
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Post | Observable<Post> | Promise<Post> {
-        const {id} = route.params;
+        const {id} = route.params;        
         return this.postService.fetchPost(id);
     }
 }

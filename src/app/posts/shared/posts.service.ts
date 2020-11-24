@@ -4,9 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Post } from './post.model';
 import { CommentsOfPost } from './comments-of-post.model';
 
-
-
-
 @Injectable({
   providedIn: 'root',
 })
