@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "jajeczko"
+  "defaultProject": "jajeczko",
+  "cli": {
+    "analytics": false
+  }
 }
