@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+
 import { Post } from '../shared/post.model';
 
 export const getPosts = createAction('[Posts Component] Get posts');

@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
+
 import { getPosts } from "./post.actions";
 
 @Injectable({providedIn: 'root'})

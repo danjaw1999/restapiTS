@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Comment } from './shared/comment.model'
+import { CommentsFacade } from './store/comments.facade';
 
 @Component({
   selector: 'app-comments',
@@ -11,11 +10,9 @@ import { Comment } from './shared/comment.model'
   styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent {
-  comments$: Observable<Comment[]>;
+  comments$: Observable<Comment[]> = this.commentsFacade.comments$;
 
-  constructor(private activatedRoute: ActivatedRoute) {
-    this.comments$ = this.activatedRoute.data.pipe(
-      map((data: {comments: Comment[]}) => data.comments)
-    )
-   }
+  constructor(private commentsFacade: CommentsFacade){
+    this.commentsFacade.getComments();
+  }
 }

@@ -1,5 +1,4 @@
 <div>
     <h2>Comments List</h2>  
-    {{comments[1].id | json}}
     <app-comment-item *ngFor="let comment of comments" [comment]="comment"></app-comment-item>
 </div>
