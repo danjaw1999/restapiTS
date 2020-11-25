@@ -8,7 +8,5 @@ import { Comment } from './../../comments/shared/comment.model';
   styleUrls: ['./post-item-info-comments.component.scss']
 })
 export class PostItemInfoCommentsComponent {
-  log(val) {console.log(val)}
-  @Input() comments: CommentsOfPost[];
-  @Input() comments2: Comment[];
+  @Input() comments: Comment[];
 }
