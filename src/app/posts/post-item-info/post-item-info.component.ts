@@ -27,7 +27,7 @@ export class PostItemInfoComponent {
     private store: Store,
     private postService: PostService
   ) {
-    
+
     this.comments$ = activatedRoute.params.pipe(
       map((data: { id: number }) => {
         this.idPost = data.id;
@@ -52,10 +52,13 @@ export class PostItemInfoComponent {
       }),
       mergeMap((id) => this.store.select(getOnePost(id))),
       mergeMap((d) => {
+        let post: Observable<Post>;
         if (!d) {
-          return this.postService.fetchPost(this.idPost);
+          post = this.postService.fetchPost(this.idPost);
+        } else {
+          post = of(d)
         }
-        return [d];
+        return post;
       })
     );
   }

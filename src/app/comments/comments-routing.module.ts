@@ -14,7 +14,7 @@ const routes: Routes = [
     component: CommentsComponent
   },
   {
-    path: ':id', component: CommentItemInfoComponent, resolve: {comment: CommentResolverService}
+    path: ':id', component: CommentItemInfoComponent
   }
 ];
 
