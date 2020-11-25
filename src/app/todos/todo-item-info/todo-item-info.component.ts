@@ -5,6 +5,7 @@ import { map, mergeMap, tap } from 'rxjs/operators';
 
 import { Todo } from '../shared/todo.model';
 import { Store } from '@ngrx/store';
+import { TodosService } from './../shared/todos.service';
 import { getOneTodos } from '../selector/todos.selectors';
 
 @Component({
@@ -14,16 +15,25 @@ import { getOneTodos } from '../selector/todos.selectors';
 })
 export class TodoItemInfoComponent {
   todo$: Observable<Todo>;
+  idTodo: number;
 
-  constructor(private activatedRoute: ActivatedRoute, private store: Store) {
-    // this.todo$ = this.activatedRoute.data.pipe(
-    //   map((data: { todo: Todo }) => data.todo)
-    // );
-    this.todo$ = activatedRoute.params.pipe(
-      map((data: { id: number }) => +data.id),
-      // tap((d) => console.log(d)),
-      mergeMap((id) => this.store.select(getOneTodos(id)))
-      // tap((d) => console.log(d))
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private store: Store,
+    private todosService: TodosService
+  ) {
+    this.todo$ = this.activatedRoute.params.pipe(
+      map((data: { id: number }) => {
+        this.idTodo = +data.id;
+        return +data.id;
+      }),
+      mergeMap((id) => this.store.select(getOneTodos(id))),
+      mergeMap((todo) => {
+        if (!todo) {
+          return this.todosService.fetchTodo(this.idTodo);
+        }
+        return [todo];
+      })
     );
   }
 }

@@ -2,13 +2,16 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map, mergeMap, shareReplay, tap } from 'rxjs/operators';
+import { map, mergeMap, tap } from 'rxjs/operators';
+
 import { getOnePost } from '../selectors/posts.selectors';
-import { getComments, hasLoaded } from '../selectors/comments.selector';
+import { getComments } from '../selectors/comments.selector';
 
 import { Comment } from './../../comments/shared/comment.model';
 import { Post } from '../shared/post.model';
+
 import { PostService } from 'src/app/posts/shared/posts.service';
+import { of } from 'rxjs';
 @Component({
   selector: 'app-post-item-info',
   templateUrl: './post-item-info.component.html',
@@ -24,6 +27,7 @@ export class PostItemInfoComponent {
     private store: Store,
     private postService: PostService
   ) {
+    
     this.comments$ = activatedRoute.params.pipe(
       map((data: { id: number }) => {
         this.idPost = data.id;
@@ -31,10 +35,13 @@ export class PostItemInfoComponent {
       }),
       mergeMap((id) => this.store.select(getComments(id))),
       mergeMap((d) => {
+        let comment: Observable<Comment[]>;
         if (d.length === 0) {
-          return this.postService.fetchPostCom(this.idPost);
+          comment = this.postService.fetchPostCom(this.idPost);
+        } else {
+          comment = of(d);
         }
-        return [d];
+        return comment;
       })
     );
 

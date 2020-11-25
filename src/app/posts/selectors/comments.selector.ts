@@ -10,10 +10,3 @@ export const getComments = (postId: number) => createSelector(
             return comments.filter(data => data.postId == postId)
     }
 )
-
-export const hasLoaded  = () => createSelector(
-    selectComments,
-    (comments: Comment[]) => {
-            return comments
-    }
-)
