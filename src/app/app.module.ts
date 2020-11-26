@@ -17,6 +17,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { PostsEffect } from './posts/store/posts.effects';
 import { TodosEffects } from './todos/store/todos.effects';
 import { CommentsEffects } from './comments/store/comments.effects';
+import { todoReducer } from './todos/store/todo.reducer';
+import { TodoEffects } from './todos/store/todo.effects';
 // import { TodosModule } from './todos/todos.module';
 // import { PostsModule } from './posts/posts.module';
 
@@ -30,12 +32,12 @@ import { CommentsEffects } from './comments/store/comments.effects';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, 
-    StoreModule.forRoot({posts: postsReducer, todos: todosReducer, comments: commentsReducer}),
+    StoreModule.forRoot({posts: postsReducer, todos: todosReducer, comments: commentsReducer, todo: todoReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, 
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([PostsEffect, TodosEffects, CommentsEffects])
+    EffectsModule.forRoot([PostsEffect, TodosEffects, CommentsEffects, TodoEffects])
     // TodosModule,
     // PostsModule
   ],

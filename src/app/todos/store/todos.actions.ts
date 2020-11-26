@@ -10,3 +10,12 @@ export const getTodosSuccess = createAction(
 export const getTodosError = createAction(
     '[Todos Component] Get Todos Failed', props<{error: any}>()
 );
+export const getTodo = createAction(
+    '[Todos Component] Get Todo', props<{id: number}>()
+);
+export const getTodoSuccess = createAction(
+    '[Todos Component] Get Todo Success', props<{todo: Todo}>()
+);
+export const getTodoError = createAction(
+    '[Todos Component] Get Todo Failed', props<{error: any}>()
+);
