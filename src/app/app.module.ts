@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,8 +18,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { PostsEffect } from './posts/store/posts.effects';
 import { TodosEffects } from './todos/store/todos.effects';
 import { CommentsEffects } from './comments/store/comments.effects';
-import { todoReducer } from './todos/store/todo.reducer';
-import { TodoEffects } from './todos/store/todo.effects';
+import { CustomSerializer } from './custom-route-serializer';
 // import { TodosModule } from './todos/todos.module';
 // import { PostsModule } from './posts/posts.module';
 
@@ -32,12 +32,15 @@ import { TodoEffects } from './todos/store/todo.effects';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, 
-    StoreModule.forRoot({posts: postsReducer, todos: todosReducer, comments: commentsReducer, todo: todoReducer}),
+    StoreModule.forRoot({posts: postsReducer, todos: todosReducer, comments: commentsReducer, router: routerReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, 
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([PostsEffect, TodosEffects, CommentsEffects, TodoEffects])
+    EffectsModule.forRoot([PostsEffect, TodosEffects, CommentsEffects]),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer
+    }),
     // TodosModule,
     // PostsModule
   ],
