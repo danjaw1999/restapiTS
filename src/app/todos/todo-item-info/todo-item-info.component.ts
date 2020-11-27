@@ -6,6 +6,7 @@ import { TodosFacade } from '../store/todos.facade';
   templateUrl: './todo-item-info.component.html',
   styleUrls: ['./todo-item-info.component.scss'],
 })
+
 export class TodoItemInfoComponent {
   todo$ = this.todosFacade.todo$; 
 

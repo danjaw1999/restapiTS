@@ -13,6 +13,7 @@ export class TodosService {
     const todos = 'https://jsonplaceholder.typicode.com/todos/';
     return this.http.get<Todo[]>(todos);
   }
+  
   fetchTodo(id: number) {
     const action = `https://jsonplaceholder.typicode.com/todos/${id}`;
     return this.http.get<Todo>(action);

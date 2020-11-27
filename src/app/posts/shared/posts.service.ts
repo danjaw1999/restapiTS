@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Post } from './post.model';
-import { CommentsOfPost } from './comments-of-post.model';
+
+import { Comment } from './../../comments/shared/comment.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export class PostService {
   }
   fetchPostCom(id: number){
     const action = `https://jsonplaceholder.typicode.com/comments?postId=${id}`;
-    return this.http.get<CommentsOfPost[]>(action);
+    return this.http.get<Comment[]>(action);
   }
 }
 

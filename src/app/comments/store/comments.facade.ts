@@ -4,8 +4,9 @@ import { filter, mergeMap, take, tap } from "rxjs/operators";
 
 import { getCurrentRouteId } from "src/app/core/selectors/route.selectors";
 import { getOneComment, selectComments } from "../selectors/comments.selectors";
+import * as commentsSelector from './../../posts/selectors/comments.selector';
 
-import { getComment, getComments } from "./comments.actions";
+import { getComentsById, getComment, getComments } from "./comments.actions";
 
 @Injectable({
     providedIn: 'root'
@@ -37,6 +38,23 @@ export class CommentsFacade{
             filter(data => !!data),
             take(1)
         )
+    }
+    getCommentsForPost() {
+      return this.store.pipe(
+        select(getCurrentRouteId),
+        mergeMap((id: number) => {
+          this.id = +id;
+          return this.store.pipe(select(commentsSelector.getComments(this.id)));
+        }),
+        tap((data) => {
+          if (!data.length) {
+            this.store.dispatch(getComentsById({ id: this.id }));
+          }
+          return data;
+        }),
+        filter((data) => !!data.length),
+        take(1)
+      );
     }
     
 }

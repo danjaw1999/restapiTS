@@ -1,21 +1,25 @@
-import { createAction, props } from "@ngrx/store";
-import { Todo } from "../shared/todo.model";
+import { createAction, props } from '@ngrx/store';
 
-export const getTodos = createAction(
-    '[Todos Component] Get Todos'
-);
+import { Todo } from '../shared/todo.model';
+
+export const getTodos = createAction('[Todos Component] Get Todos');
 export const getTodosSuccess = createAction(
-    '[Todos Component] Get Todos Success', props<{todos: Todo[]}>()
+  '[Todos Component] Get Todos Success',
+  props<{ todos: Todo[] }>()
 );
 export const getTodosError = createAction(
-    '[Todos Component] Get Todos Failed', props<{error: any}>()
+  '[Todos Component] Get Todos Failed',
+  props<{ error: any }>()
 );
 export const getTodo = createAction(
-    '[Todos Component] Get Todo', props<{id: number}>()
+  '[Todos Component] Get Todo',
+  props<{ id: number }>()
 );
 export const getTodoSuccess = createAction(
-    '[Todos Component] Get Todo Success', props<{todo: Todo}>()
+  '[Todos Component] Get Todo Success',
+  props<{ todo: Todo }>()
 );
 export const getTodoError = createAction(
-    '[Todos Component] Get Todo Failed', props<{error: any}>()
+  '[Todos Component] Get Todo Failed',
+  props<{ error: any }>()
 );

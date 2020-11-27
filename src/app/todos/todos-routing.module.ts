@@ -9,7 +9,7 @@ import { TodoItemInfoComponent } from './todo-item-info/todo-item-info.component
 const routes: Routes = [
   {
     path: '',
-    component: TodosComponent
+    component: TodosComponent,
   },
   {
     path: ':id',

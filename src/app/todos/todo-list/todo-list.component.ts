@@ -7,6 +7,7 @@ import { Todo } from 'src/app/todos/shared/todo.model';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
+
 export class TodoListComponent {
   @Input() todos: Todo[];
 }
