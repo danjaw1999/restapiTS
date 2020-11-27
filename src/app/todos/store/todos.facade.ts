@@ -24,7 +24,6 @@ export class TodosFacade {
   getTodo() {
     return this.store.pipe(
       select(getCurrentRouteId),
-      // tap((currentId) => console.log('aa', currentId)),
       mergeMap((id) => {
         this.id = id;
         return this.store.pipe(

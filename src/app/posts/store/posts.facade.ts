@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { filter, mergeMap, take, tap } from 'rxjs/operators';
-import { getComentsById, getCommentsSuccess } from 'src/app/comments/store/comments.actions';
+import { getOneComment } from 'src/app/comments/selectors/comments.selectors';
+import {
+  getComentsById,
+  getCommentsSuccess,
+} from 'src/app/comments/store/comments.actions';
 
 import { getCurrentRouteId } from 'src/app/core/selectors/route.selectors';
-import { getComments } from '../selectors/comments.selector';
+import { getComments, selectComments } from '../selectors/comments.selector';
 import { getOnePost, selectPosts } from '../selectors/posts.selectors';
 
 import { getPost, getPosts } from './post.actions';
@@ -13,13 +17,14 @@ import { getPost, getPosts } from './post.actions';
 export class PostsFacade {
   posts$ = this.store.pipe(select(selectPosts));
   post$ = this.getPost();
-  comments$ = this.getCommentsToPost();
   id: number;
 
   constructor(private store: Store<any>) {}
+  
   getPosts() {
     this.store.dispatch(getPosts());
   }
+
   getPost() {
     return this.store.pipe(
       select(getCurrentRouteId),
@@ -37,25 +42,21 @@ export class PostsFacade {
       take(1)
     );
   }
+
   getCommentsToPost() {
     return this.store.pipe(
       select(getCurrentRouteId),
-      mergeMap((id) => {
-        this.id = id;     
-        console.log('id',id);   
-        return this.store.pipe(
-          select(getComments(id))
-          );
+      mergeMap((id: number) => {
+        this.id = +id;
+        return this.store.pipe(select(getComments(this.id)));
       }),
       tap((data) => {
-        if (data.length === 0) {
-          this.store.dispatch(getComentsById({id: this.id}));
+        if (!data.length) {
+          this.store.dispatch(getComentsById({ id: this.id }));
         }
-        console.log('data',data);
-        
         return data;
       }),
-      filter((data) => !!data),
+      filter((data) => !!data.length),
       take(1)
     );
   }
