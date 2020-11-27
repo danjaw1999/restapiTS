@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { filter, mergeMap, take, tap } from 'rxjs/operators';
-import { getCurrentId } from 'src/app/core/selectors/route.selectors';
+import { getCurrentRouteId } from 'src/app/core/selectors/route.selectors';
 
 import { getOneTodo, selectTodos } from '../selector/todos.selectors';
+
 import { getTodo, getTodos } from './todos.actions';
 
 @Injectable({
@@ -22,7 +23,7 @@ export class TodosFacade {
 
   getTodo() {
     return this.store.pipe(
-      select(getCurrentId),
+      select(getCurrentRouteId),
       // tap((currentId) => console.log('aa', currentId)),
       mergeMap((id) => {
         this.id = id;
@@ -34,7 +35,6 @@ export class TodosFacade {
         if (!data) {
           this.store.dispatch(getTodo({id: this.id}));
         }
-        
         return data;
       }),
       filter(data => !!data),

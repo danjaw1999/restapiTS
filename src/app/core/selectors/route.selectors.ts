@@ -1,31 +1,21 @@
 import * as fromRouter from '@ngrx/router-store';
-import { routerReducer } from '@ngrx/router-store';
-import { createSelector, ActionReducerMap } from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 
-export interface StoreRootState {
-    router: fromRouter.RouterReducerState<any>;
-  }
-  export const reducers: ActionReducerMap<StoreRootState> = {
-    router: routerReducer,
-  };
+import { RouterStateUrl } from 'src/app/custom-route-serializer';
+
+export interface State {
+  router: fromRouter.RouterReducerState<RouterStateUrl>;
+}
+ 
+export const selectRouter = createFeatureSelector<State, fromRouter.RouterReducerState<RouterStateUrl>>('router');
   
-export const getRouterState = (state: StoreRootState) => state.router;
-
 export const getCurrentRouteState = createSelector(
-  getRouterState,
-  (state: fromRouter.RouterReducerState) => {
-      if(state?.state) {
-          return state;
-      }
-      return undefined;
-  }
+  selectRouter,
+  ({state}) => !!state ? state : undefined
 );
-export const getCurrentId = createSelector(
-  getRouterState,
-  (state: fromRouter.RouterReducerState) => {
-      if(state?.state) {
-          return state.state.params.id;
-      }
-      return undefined;
-  }
+
+export const getCurrentRouteId = createSelector(
+  getCurrentRouteState,
+  (state) => state.params.id  
 );
+

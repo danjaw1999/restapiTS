@@ -20,5 +20,10 @@ export class CommentsService {
     const action = `https://jsonplaceholder.typicode.com/comments/${id}`;
     return this.http.get<Comment>(action);
   }
+
+   fetchCommentsByPostId(id: number) {
+    const action = `https://jsonplaceholder.typicode.com/comments?postId=${id}`;
+    return this.http.get<Comment[]>(action);
+  }
 }
 

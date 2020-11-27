@@ -3,10 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { CommentsComponent } from './comments.component';
 import { CommentItemInfoComponent } from './comment-item-info/comment-item-info.component';
-import { CommentResolverService } from './shared/comment.resolver';
-
-
-
 
 const routes: Routes = [
   {

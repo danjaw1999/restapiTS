@@ -38,7 +38,7 @@ import { CustomSerializer } from './custom-route-serializer';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([PostsEffect, TodosEffects, CommentsEffects]),
-    StoreRouterConnectingModule.forRoot({
+    StoreRouterConnectingModule.forRoot({     
       serializer: CustomSerializer
     }),
     // TodosModule,

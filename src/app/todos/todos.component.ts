@@ -12,19 +12,8 @@ import { TodosFacade } from './store/todos.facade';
 export class TodosComponent {
   todos$: Observable<Todo[]> = this.todosFacade.todos$;
   
-  // constructor(private activatedRoute: ActivatedRoute) {
-  //   this.todos$ = this.activatedRoute.data.pipe(
-  //     map((data: { todos: Todo[] }) => data.todos)
-  //   )
-  //  }
   constructor(private todosFacade : TodosFacade){
     this.todosFacade.getTodos();
   }
-  // ngOnInit() {
-  //   this.todos$ = this.mainService.fetchTodos().pipe(
-  //     tap(todos => {
-  //       this.ids = todos.map(item => item.id);
-  //     })
-  //   );
-  // }
+
 }

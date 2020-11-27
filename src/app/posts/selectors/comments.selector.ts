@@ -6,7 +6,5 @@ export const selectComments = createFeatureSelector<Comment[]>('comments');
 
 export const getComments = (postId: number) => createSelector(
     selectComments,
-    (comments: Comment[]) => {
-            return comments.filter(data => data.postId == postId)
-    }
+    (comments: Comment[]) => comments.filter(data => data.postId === +postId)
 )

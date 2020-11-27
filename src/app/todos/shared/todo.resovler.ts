@@ -19,7 +19,6 @@ export class TodoResolverService implements Resolve<Todo> {
     state: RouterStateSnapshot
   ): Todo | Observable<Todo> | Promise<Todo> {
     const { id } = route.params;
-
     return this.todosService.fetchTodo(id);
   }
 }
